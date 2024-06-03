@@ -45,9 +45,20 @@ h1 {
     background: #218838;
 }
 
+#image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 #image-preview img {
     max-width: 100px;
     margin: 10px;
     border: 2px solid #ddd;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+#image-preview img:hover {
+    border-color: red;
 }
