@@ -25,7 +25,9 @@ function updateImagePreview() {
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Listeden Çıkar';
             removeButton.classList.add('remove-button');
-            removeButton.addEventListener('click', () => removeImage(index));
+            removeButton.addEventListener('click', () => {
+                removeImage(index);
+            });
 
             imageItem.appendChild(img);
             imageItem.appendChild(removeButton);
@@ -57,5 +59,4 @@ async function generatePDF() {
         if (title && !isTitleAdded) {
             page.drawText(title, {
                 x: margin,
-                y: a4Height - margin - 30,
-                size
+               
