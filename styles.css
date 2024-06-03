@@ -4,13 +4,16 @@ body {
     color: #fff;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 100vh;
     margin: 0;
 }
 
 .container {
     width: 400px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .upload-section {
@@ -52,8 +55,14 @@ body {
     cursor: pointer;
 }
 
-.file-list {
+.file-list-container {
+    flex-grow: 1;
+    overflow-y: auto;
     margin-bottom: 20px;
+}
+
+.file-list {
+    padding: 0 10px;
 }
 
 .file-item {
@@ -85,6 +94,7 @@ body {
     border-radius: 5px;
     width: 100%;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .generate-button:hover,
@@ -99,13 +109,11 @@ body {
     border-radius: 5px;
 }
 
-#download-link {
-    display: block;
-    margin-top: 10px;
-    text-align: center;
-    background-color: #2a6b2e;
-    color: white;
+#user-text {
+    width: 100%;
     padding: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
-    text-decoration: none;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
