@@ -19,18 +19,22 @@
 
         <div class="upload-section" id="upload-section-after" style="display: none;">
             <div class="header">SiteName</div>
-            <div class="file-list" id="file-list">
-                <!-- File items will be appended here dynamically -->
+            <div class="file-list-container">
+                <div class="file-list" id="file-list">
+                    <!-- File items will be appended here dynamically -->
+                </div>
             </div>
             <div class="upload-box" id="drop-area-2">
                 <p>Drag & Drop your files or <span class="browse">Browse</span></p>
                 <input type="file" id="file-input-2" multiple style="display: none;">
             </div>
+            <input type="text" id="user-text" placeholder="Enter your text here">
             <button class="generate-button" id="generate-pdf">Generate PDF File</button>
             <a id="download-link" style="display: none;" download="photos.pdf">Download PDF</a>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/heic2any/dist/heic2any.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
