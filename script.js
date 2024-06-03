@@ -5,7 +5,7 @@ let selectedFiles = [];
 
 function handleFileSelect(event) {
     const files = event.target.files;
-    selectedFiles = Array.from(files);
+    selectedFiles = selectedFiles.concat(Array.from(files));
     updateImagePreview();
 }
 
@@ -68,30 +68,4 @@ async function generatePDF() {
                     drawWidth = Math.min(maxWidth, width);
                     drawHeight = drawWidth / aspectRatio;
                 } else {  // Portrait
-                    drawHeight = Math.min(maxHeight, height);
-                    drawWidth = drawHeight * aspectRatio;
-                }
-
-                const x = margin + (j % 2) * (maxWidth + margin) + (maxWidth - drawWidth) / 2;
-                const y = a4Height - margin - (Math.floor(j / 2) + 1) * (maxHeight + margin) + (maxHeight - drawHeight) / 2;
-                page.drawImage(img, {
-                    x: x,
-                    y: y,
-                    width: drawWidth,
-                    height: drawHeight
-                });
-            }
-        }
-    }
-
-    const pdfBytes = await pdfDoc.save();
-    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-
-    // Create a download link and trigger the download for all devices
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'photos.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
+                    drawH
