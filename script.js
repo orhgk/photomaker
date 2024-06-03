@@ -1,5 +1,8 @@
 document.getElementById('file-input').addEventListener('change', handleFileSelect);
 document.getElementById('generate-pdf').addEventListener('click', generatePDF);
+document.getElementById('add-more').addEventListener('click', () => {
+    document.getElementById('file-input').click();
+});
 
 let selectedFiles = [];
 
@@ -22,14 +25,19 @@ function updateImagePreview() {
             const img = document.createElement('img');
             img.src = e.target.result;
 
+            const filename = document.createElement('span');
+            filename.textContent = file.name;
+            filename.classList.add('filename');
+
             const removeButton = document.createElement('button');
-            removeButton.textContent = 'Listeden Çıkar';
+            removeButton.textContent = 'Remove';
             removeButton.classList.add('remove-button');
             removeButton.addEventListener('click', () => {
                 removeImage(index);
             });
 
             imageItem.appendChild(img);
+            imageItem.appendChild(filename);
             imageItem.appendChild(removeButton);
             preview.appendChild(imageItem);
         };
