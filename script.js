@@ -98,4 +98,20 @@ async function generatePDF() {
                     x: x,
                     y: y,
                     width: drawWidth,
-                    heig
+                    height: drawHeight
+                });
+            }
+        }
+    }
+
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+    // Create a download link and trigger the download for all devices
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'photos.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
