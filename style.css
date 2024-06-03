@@ -55,6 +55,8 @@ h1 {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .image-item img {
