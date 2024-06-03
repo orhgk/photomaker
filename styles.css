@@ -86,19 +86,38 @@ body {
     cursor: pointer;
 }
 
-.generate-button {
-    background-color: #2a6b2e;
-    color: #fff;
+.button-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.generate-button,
+#download-link {
     border: none;
     padding: 10px;
     border-radius: 5px;
     width: 100%;
     cursor: pointer;
     margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block; /* Butonları aynı hizaya getirmek için */
+}
+
+.generate-button {
+    background-color: #2a6b2e;
+    color: #fff;
+}
+
+#download-link {
+    background-color: #1d70b8; /* Butonun rengi */
+    color: #fff;
 }
 
 .generate-button:hover,
-.remove-button:hover {
+.remove-button:hover,
+#download-link:hover {
     opacity: 0.8;
 }
 
