@@ -6,18 +6,28 @@ let selectedFiles = [];
 function handleFileSelect(event) {
     const files = event.target.files;
     selectedFiles = Array.from(files);
+    updateImagePreview();
+}
+
+function updateImagePreview() {
     const preview = document.getElementById('image-preview');
     preview.innerHTML = '';
 
-    selectedFiles.forEach(file => {
+    selectedFiles.forEach((file, index) => {
         const reader = new FileReader();
         reader.onload = function(e) {
             const img = document.createElement('img');
             img.src = e.target.result;
+            img.addEventListener('click', () => removeImage(index));
             preview.appendChild(img);
         };
         reader.readAsDataURL(file);
     });
+}
+
+function removeImage(index) {
+    selectedFiles.splice(index, 1);
+    updateImagePreview();
 }
 
 async function generatePDF() {
