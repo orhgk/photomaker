@@ -31,7 +31,8 @@ h1 {
     border: 1px solid #ddd;
 }
 
-#generate-pdf {
+#generate-pdf,
+#add-more {
     background: #28a745;
     color: #fff;
     border: none;
@@ -42,21 +43,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-#generate-pdf:hover {
-    background: #218838;
-}
-
-#add-more {
-    background: #28a745;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    width: calc(100% - 20px);
-    margin-top: 20px;
-}
-
+#generate-pdf:hover,
 #add-more:hover {
     background: #218838;
 }
