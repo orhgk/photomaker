@@ -54,7 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const fileName = document.createElement('span');
         fileName.className = 'file-name';
-        fileName.textContent = file.name;
+        
+        // Dosya ismini kısalt
+        const truncatedName = file.name.length > 15 ? file.name.substring(0, 12) + '...' + file.name.split('.').pop() : file.name;
+        fileName.textContent = truncatedName;
 
         const removeButton = document.createElement('button');
         removeButton.className = 'remove-button';
