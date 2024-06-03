@@ -23,19 +23,29 @@ function handleFileSelect(event) {
 async function generatePDF() {
     const { PDFDocument, rgb } = PDFLib;
     const pdfDoc = await PDFDocument.create();
-    const a4Width = 595.28;
-    const a4Height = 841.89;
+    const a4Width = 841.89;
+    const a4Height = 595.28;
+    const margin = 10;
+    const imageWidth = (a4Width - 3 * margin) / 2;
+    const imageHeight = (a4Height - 3 * margin) / 2;
 
-    for (const file of selectedFiles) {
-        const imgBytes = await file.arrayBuffer();
-        const img = await pdfDoc.embedJpg(imgBytes);
+    for (let i = 0; i < selectedFiles.length; i += 4) {
         const page = pdfDoc.addPage([a4Width, a4Height]);
-        page.drawImage(img, {
-            x: 0,
-            y: 0,
-            width: a4Width,
-            height: a4Height
-        });
+        for (let j = 0; j < 4; j++) {
+            if (i + j < selectedFiles.length) {
+                const file = selectedFiles[i + j];
+                const imgBytes = await file.arrayBuffer();
+                const img = await pdfDoc.embedJpg(imgBytes);
+                const x = margin + (j % 2) * (imageWidth + margin);
+                const y = a4Height - margin - (Math.floor(j / 2) + 1) * (imageHeight + margin);
+                page.drawImage(img, {
+                    x: x,
+                    y: y,
+                    width: imageWidth,
+                    height: imageHeight
+                });
+            }
+        }
     }
 
     const pdfBytes = await pdfDoc.save();
