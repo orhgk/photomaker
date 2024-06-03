@@ -18,6 +18,8 @@ function handleFileSelect(event) {
         };
         reader.readAsDataURL(file);
     });
+
+    document.getElementById('generate-pdf').disabled = selectedFiles.length === 0;
 }
 
 async function generatePDF() {
@@ -29,17 +31,6 @@ async function generatePDF() {
     const maxWidth = (a4Width - 3 * margin) / 2;
     const maxHeight = (a4Height - 3 * margin) / 2;
     const title = document.getElementById('pdf-title').value;
-
-    // First page with title
-    if (title) {
-        const titlePage = pdfDoc.addPage([a4Width, a4Height]);
-        titlePage.drawText(title, {
-            x: margin,
-            y: a4Height - margin - 20,
-            size: 30,
-            color: rgb(0, 0, 0)
-        });
-    }
 
     for (let i = 0; i < selectedFiles.length; i += 4) {
         const page = pdfDoc.addPage([a4Width, a4Height]);
@@ -69,14 +60,30 @@ async function generatePDF() {
                     width: drawWidth,
                     height: drawHeight
                 });
+
+                // Add title to the top right of each image
+                if (title) {
+                    const titleX = x + drawWidth - margin;
+                    const titleY = y + drawHeight - margin;
+                    page.drawText(title, {
+                        x: titleX - (title.length * 4),  // Adjust text position based on length
+                        y: titleY - 10,
+                        size: 12,
+                        color: rgb(0, 0, 0)
+                    });
+                }
             }
         }
     }
 
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+    // Create a download link and trigger the download for all devices
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = 'photos.pdf';
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 }
