@@ -3,21 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo to PDF</title>
+    <title>File Upload</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Photo to PDF Converter</h1>
-        <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
-        <button id="add-more">Add More</button>
-        <div id="image-preview">
-            <!-- Image items will be appended here by JavaScript -->
+        <div class="upload-section" id="upload-section-before">
+            <div class="header">SiteName</div>
+            <div class="attachment">Attachment</div>
+            <div class="upload-box" id="drop-area">
+                <p>Drag & Drop your files or <span class="browse">Browse</span></p>
+                <input type="file" id="file-input" multiple style="display: none;">
+            </div>
         </div>
-        <input type="text" id="pdf-title" placeholder="Enter PDF Title">
-        <button id="generate-pdf">Generate PDF</button>
+
+        <div class="upload-section" id="upload-section-after" style="display: none;">
+            <div class="header">SiteName</div>
+            <div class="file-list" id="file-list">
+                <!-- File items will be appended here dynamically -->
+            </div>
+            <div class="upload-box" id="drop-area-2">
+                <p>Drag & Drop your files or <span class="browse">Browse</span></p>
+                <input type="file" id="file-input-2" multiple style="display: none;">
+            </div>
+            <button class="generate-button" id="generate-pdf">Generate PDF File</button>
+            <a id="download-link" style="display: none;" download="photos.pdf">Download PDF</a>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
