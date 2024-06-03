@@ -4,8 +4,8 @@ document.getElementById('generate-pdf').addEventListener('click', generatePDF);
 let selectedFiles = [];
 
 function handleFileSelect(event) {
-    const files = event.target.files;
-    selectedFiles = selectedFiles.concat(Array.from(files));
+    const files = Array.from(event.target.files);
+    selectedFiles = selectedFiles.concat(files);
     updateImagePreview();
 }
 
@@ -55,8 +55,15 @@ async function generatePDF() {
 
     for (let i = 0; i < selectedFiles.length; i += 4) {
         const page = pdfDoc.addPage([a4Width, a4Height]);
-        
+
         if (title && !isTitleAdded) {
             page.drawText(title, {
                 x: margin,
-               
+                y: a4Height - margin - 30,
+                size: 24,
+                color: rgb(0, 0, 0)
+            });
+            isTitleAdded = true;
+        }
+
+        for (let j = 0; j 
