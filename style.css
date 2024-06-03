@@ -41,12 +41,7 @@ h1 {
     width: calc(100% - 20px);
 }
 
-#generate-pdf:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-}
-
-#generate-pdf:hover:not(:disabled) {
+#generate-pdf:hover {
     background: #218838;
 }
 
