@@ -20,7 +20,8 @@ h1 {
     margin-bottom: 20px;
 }
 
-#file-input {
+#file-input,
+#pdf-title {
     margin-bottom: 20px;
 }
 
