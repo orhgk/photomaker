@@ -29,9 +29,21 @@ async function generatePDF() {
     const maxWidth = (a4Width - 3 * margin) / 2;
     const maxHeight = (a4Height - 3 * margin) / 2;
     const title = document.getElementById('pdf-title').value;
+    let isTitleAdded = false;
 
     for (let i = 0; i < selectedFiles.length; i += 4) {
         const page = pdfDoc.addPage([a4Width, a4Height]);
+        
+        if (title && !isTitleAdded) {
+            page.drawText(title, {
+                x: margin,
+                y: a4Height - margin - 30,
+                size: 24,
+                color: rgb(0, 0, 0)
+            });
+            isTitleAdded = true;
+        }
+
         for (let j = 0; j < 4; j++) {
             if (i + j < selectedFiles.length) {
                 const file = selectedFiles[i + j];
@@ -58,18 +70,6 @@ async function generatePDF() {
                     width: drawWidth,
                     height: drawHeight
                 });
-
-                // Add title to the top right of each image
-                if (title) {
-                    const titleX = x + drawWidth - margin;
-                    const titleY = y + drawHeight - margin;
-                    page.drawText(title, {
-                        x: titleX - (title.length * 4),  // Adjust text position based on length
-                        y: titleY - 10,
-                        size: 12,
-                        color: rgb(0, 0, 0)
-                    });
-                }
             }
         }
     }
