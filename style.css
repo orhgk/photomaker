@@ -47,18 +47,32 @@ h1 {
 
 #image-preview {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-#image-preview img {
-    max-width: 100px;
-    margin: 10px;
+.image-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.image-item img {
+    max-width: 50px;
+    margin-right: 10px;
     border: 2px solid #ddd;
     border-radius: 5px;
-    cursor: pointer;
 }
 
-#image-preview img:hover {
-    border-color: red;
+.remove-button {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.remove-button:hover {
+    background: #c82333;
 }
