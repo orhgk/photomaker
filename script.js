@@ -21,13 +21,13 @@ function handleFileSelect(event) {
 }
 
 async function generatePDF() {
-    const { PDFDocument, rgb } = PDFLib;
+    const { PDFDocument } = PDFLib;
     const pdfDoc = await PDFDocument.create();
     const a4Width = 841.89;
     const a4Height = 595.28;
     const margin = 10;
-    const imageWidth = (a4Width - 3 * margin) / 2;
-    const imageHeight = (a4Height - 3 * margin) / 2;
+    const maxWidth = (a4Width - 3 * margin) / 2;
+    const maxHeight = (a4Height - 3 * margin) / 2;
 
     for (let i = 0; i < selectedFiles.length; i += 4) {
         const page = pdfDoc.addPage([a4Width, a4Height]);
@@ -36,13 +36,26 @@ async function generatePDF() {
                 const file = selectedFiles[i + j];
                 const imgBytes = await file.arrayBuffer();
                 const img = await pdfDoc.embedJpg(imgBytes);
-                const x = margin + (j % 2) * (imageWidth + margin);
-                const y = a4Height - margin - (Math.floor(j / 2) + 1) * (imageHeight + margin);
+                const { width, height } = img.scale(1);
+                const aspectRatio = width / height;
+
+                let drawWidth, drawHeight;
+
+                if (aspectRatio > 1) {  // Landscape
+                    drawWidth = Math.min(maxWidth, width);
+                    drawHeight = drawWidth / aspectRatio;
+                } else {  // Portrait
+                    drawHeight = Math.min(maxHeight, height);
+                    drawWidth = drawHeight * aspectRatio;
+                }
+
+                const x = margin + (j % 2) * (maxWidth + margin) + (maxWidth - drawWidth) / 2;
+                const y = a4Height - margin - (Math.floor(j / 2) + 1) * (maxHeight + margin) + (maxHeight - drawHeight) / 2;
                 page.drawImage(img, {
                     x: x,
                     y: y,
-                    width: imageWidth,
-                    height: imageHeight
+                    width: drawWidth,
+                    height: drawHeight
                 });
             }
         }
