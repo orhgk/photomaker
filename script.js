@@ -18,8 +18,6 @@ function handleFileSelect(event) {
         };
         reader.readAsDataURL(file);
     });
-
-    document.getElementById('generate-pdf').disabled = selectedFiles.length === 0;
 }
 
 async function generatePDF() {
