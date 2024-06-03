@@ -21,13 +21,25 @@ function handleFileSelect(event) {
 }
 
 async function generatePDF() {
-    const { PDFDocument } = PDFLib;
+    const { PDFDocument, rgb } = PDFLib;
     const pdfDoc = await PDFDocument.create();
     const a4Width = 841.89;
     const a4Height = 595.28;
     const margin = 10;
     const maxWidth = (a4Width - 3 * margin) / 2;
     const maxHeight = (a4Height - 3 * margin) / 2;
+    const title = document.getElementById('pdf-title').value;
+
+    // First page with title
+    if (title) {
+        const titlePage = pdfDoc.addPage([a4Width, a4Height]);
+        titlePage.drawText(title, {
+            x: margin,
+            y: a4Height - margin - 20,
+            size: 30,
+            color: rgb(0, 0, 0)
+        });
+    }
 
     for (let i = 0; i < selectedFiles.length; i += 4) {
         const page = pdfDoc.addPage([a4Width, a4Height]);
