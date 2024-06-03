@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#file-input {
+    margin-bottom: 20px;
+}
+
+#generate-pdf {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#generate-pdf:hover {
+    background: #218838;
+}
+
+#image-preview img {
+    max-width: 100px;
+    margin: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
