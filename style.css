@@ -39,9 +39,25 @@ h1 {
     cursor: pointer;
     border-radius: 5px;
     width: calc(100% - 20px);
+    margin-bottom: 20px;
 }
 
 #generate-pdf:hover {
+    background: #218838;
+}
+
+#add-more {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    margin-top: 20px;
+}
+
+#add-more:hover {
     background: #218838;
 }
 
@@ -57,6 +73,9 @@ h1 {
     margin-bottom: 10px;
     width: 100%;
     justify-content: space-between;
+    background: #ddd;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .image-item img {
@@ -64,6 +83,11 @@ h1 {
     margin-right: 10px;
     border: 2px solid #ddd;
     border-radius: 5px;
+}
+
+.image-item .filename {
+    flex-grow: 1;
+    margin-right: 10px;
 }
 
 .remove-button {
